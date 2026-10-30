@@ -1,10 +1,6 @@
-DROP DATABASE IF EXISTS `tarefas`;
-
 CREATE DATABASE IF NOT EXISTS `tarefas`;
 
 USE `tarefas`;
-
-DROP TABLE IF EXISTS `tarefas`;
 
 CREATE TABLE IF NOT EXISTS `tarefa`(
     `id_tarefa` BIGINT INT NOT NULL  PRIMARY KEY,
