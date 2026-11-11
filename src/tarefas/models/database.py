@@ -54,7 +54,7 @@ class Database:
             return 
 
         try:
-            self.cursor.execute(sql, params)
+            self.cursor.execute(sql, params )
 
             if self.cursor.description:
                 return self.cursor.fetchall()
@@ -66,18 +66,34 @@ class Database:
             print(f'Erro de execução:{e}')
             return 
 
+    # Método de entrada no contexto(para uso com `with`)
+    def __enter__(self):
+        self.conectar()
+        return self
+
+    #Método de saída de contexto(para uso com `with`)
+    def __exit__(self, exc_type, ec_val, exc_tb):
+        self.desconectar()
+
+        """
+        Definição do caminho absoluto até o arquivo de script SQL que será 
+        executado para criar o banco de dados na primeira vez que aplicação
+        for utilizado. Esse caminho não depende do sistema operacional.
+        """
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 SQL_PATH = BASE_DIR / "data" / "tarefas.sql"
 
 def init_db(sql_filepath=SQL_PATH):
-    """Função responsável por inicializar o schema (database) no banco de dados."""
+    """Função responsável por inicializar o schema (database) no banco de
+      dados."""
 
     load_dotenv()
 
     try:
         conexao = mc.connect(
             host = getenv('DB_HOST'),
-            user = getenv('DB_PASSWORD'),
+            user = getenv('DB_USER'),
             password = getenv('DB_PASSWORD')
         )
         cursor = conexao.cursor()

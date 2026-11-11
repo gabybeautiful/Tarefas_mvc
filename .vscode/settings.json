@@ -3,6 +3,7 @@
         "PYTHONPATH":"${workspaceFolder}/src/tarefas"
     },
     "python.terminal.useEnvFile": true,
-    "editor.rulers":[70, 80],
-    "files.autoSave":""
+    "editor.rulers":[80],
+    "files.autoSave":"afterDelay",
+    "python.analysis.typeCheckingMode":"off"
 }
