@@ -36,11 +36,12 @@ class Tarefa:
             return tarefas_banco if tarefas_banco else []
         
     @staticmethod
-    def apagarTarefa(self):
-         sql = 'DELETE self tarefa (titulo_tarefa, data_conclusao)VALUES (%s,%s); '
+    def apagarTarefa(id_tarefa):
+         sql = 'DELETE tarefa (titulo_tarefa, data_conclusao) VALUES (%s, %s);'
          params = (self.titulo, self.data_conclusao)
 
-        
+         with Database() as db:
+            db.executar(sql, params)
 
 #Área 51 (testes)
 #tarefa = Tarefa('Minha nova tarefa')

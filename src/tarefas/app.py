@@ -39,9 +39,11 @@ def home():
         tarefas_da_pagina=tarefas
         )
 
-@app.route('/delete/int:id>')
+@app.route('/delete/<int:id>')
 def apagar_id_especificado(id):
-    pass
+       Tarefa.apagarTarefa(id)
+
+       return redirect(url_for('home'))
 
 
 if __name__ == '__main__':
