@@ -36,12 +36,24 @@ class Tarefa:
             return tarefas_banco if tarefas_banco else []
         
     @staticmethod
-    def apagarTarefa(id_tarefa):
-         sql = 'DELETE tarefa (titulo_tarefa, data_conclusao) VALUES (%s, %s);'
-         params = (self.titulo, self.data_conclusao)
+    def apagar_tarefa(id):
+         sql = 'DELETE FROM tarefa WHERE id_tarefa %s);'
+         params =(id,)
 
          with Database() as db:
             db.executar(sql, params)
+
+         """No PHP: $_POST['id']
+         """
+
+    @staticmethod
+    def atualizar_tarefa():
+        sql ='UPDATE tarefa SET titulo_tarefa = %s, data_conclusao =  %s WHERE id_tarefa =%s'
+        params =()
+
+        with Database() as db:
+            db.executar(sql, params)
+        
 
 #Área 51 (testes)
 #tarefa = Tarefa('Minha nova tarefa')

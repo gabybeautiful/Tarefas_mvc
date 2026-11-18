@@ -41,7 +41,7 @@ def home():
 
 @app.route('/delete/<int:id>')
 def apagar_id_especificado(id):
-       Tarefa.apagarTarefa(id)
+       Tarefa.apagar_tarefa(id)
 
        return redirect(url_for('home'))
 
