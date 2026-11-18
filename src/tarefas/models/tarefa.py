@@ -24,7 +24,7 @@ class Tarefa:
             db.executar(sql, params)
 
     @staticmethod
-    def listarTarefas() -> list:
+    def listar_tarefas() -> list:
         """Reotrna uma lista com todas as tarefas cadastradas."""
 
         sql = '''SELECT id_tarefa, titulo_tarefa, data_conclusao 
@@ -47,12 +47,40 @@ class Tarefa:
          """
 
     @staticmethod
-    def atualizar_tarefa():
-        sql ='UPDATE tarefa SET titulo_tarefa = %s, data_conclusao =  %s WHERE id_tarefa =%s'
-        params =()
+    def carregar_tarefa(id):
+        sql = ''' SELECT id_tarefatitulo_tarefa, data_conclusao, FROM tarefas
+          WHERE id_tarefa =%s;'''
+        params =(id,)
 
         with Database() as db:
             db.executar(sql, params)
+
+        if resultado:
+            tarefa_selecionada = resultado[0]
+
+            data_formata =(
+                 tarefa_selecionada['data_conclusao'].strftime('%Y-%m-%d')
+                 if isinstance(tarefa_selecionada['data_conclusao'], datetime)
+                 else tarefa_selecionada['data_conclusao']
+            )
+
+            return Tarefa(
+                 id=tarefa_selecionada['id_tarefa'],
+                 titulo=tarefa_selecionada['titulo_tarefa'],
+                 data_conclusao=data_formata
+             )
+        return None
+
+    def atualizar_tarefa(self):
+
+        
+        sql= '''UPDATE tarefas SET titulo_tarefa = %s, data_conclusao =%s
+         WHERE id_tarefa =%s;'''
+        params = (self.titulo, self.data_conclusao, self.id)
+
+        with Database() as db:
+                    db.executar(sql, params)
+
         
 
 #Área 51 (testes)

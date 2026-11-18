@@ -99,7 +99,7 @@ input:focus {
 }
 
 
-body > button {
+body button {
     display: block;
     width: 100%;
     min-height: 52px;
