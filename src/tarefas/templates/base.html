@@ -23,10 +23,10 @@
     <ul id="listaTarefas">
         {% for tarefa in tarefas_da_pagina %}
             <li>{{tarefa.titulo_tarefa}} - {{tarefa.data_conclusao}}
-                <a href="{{url_for(' editar_id_especificado', 
-                   id=tarefa.id=tarefa)}}">editar</a>
-                <a href="{{url_for(' apagar_id_especificado',
-                   id=tarefa.id=tarefa)}}">Apagar</a>  
+                <a href="{{url_for('editar_id_especificado', 
+                   id=tarefa.id_tarefa)}}">editar</a>
+                <a href="{{url_for('apagar_id_especificado',
+                   id=tarefa.id_tarefa)}}">Apagar</a>  
             </li>
         {% endfor %}
         </ul>
