@@ -23,81 +23,13 @@
     <ul id="listaTarefas">
         {% for tarefa in tarefas_da_pagina %}
             <li>{{tarefa.titulo_tarefa}} - {{tarefa.data_conclusao}}
-                <a href="{{url_for(' editar_id_especificado', id=tarefa.id=tarefa)}}">editar</a>
-                <a href="{{url_for(' apagar_id_especificado', id=tarefa.id=tarefa)}}">Apagar</a>  
+                <a href="{{url_for(' editar_id_especificado', 
+                   id=tarefa.id=tarefa)}}">editar</a>
+                <a href="{{url_for(' apagar_id_especificado',
+                   id=tarefa.id=tarefa)}}">Apagar</a>  
             </li>
         {% endfor %}
         </ul>
 
-    <!-- <script>
-        // Aplicação MVC (Modelagem-Visualização-Controle)
-
-        // Seçaõ de Modelagem
-        let tarefas;
-        const tarefasSalvas = JSON.parse(localStorage.getItem('tarefas'));
-
-        if (Array.isArray(tarefasSalvas)){
-            tarefas = tarefasSalvas;
-        } else{
-            tarefas = [];
-        }
-        function salvarTarefas(){
-            localStorage.setItem('tarefas', JSON.stringify(tarefas));
-        }
-
-        // Seção de Visualização
-        function renderizarTarefas(){
-            const listaTarefas = document.getElementById('listaTarefas');
-            listaTarefas.innerHTML =""
-
-            tarefas.forEach(function(tarefa){
-                const divTarefa = document.createElement('div');
-                divTarefa.innerHTML = HTML = tarefa.tituloTarefa + '-' + tarefa.dataConclusao;
-
-                const botaoApagar = document.createElement('button');
-                botaoApagar.innerHTML = "Apagar";
-                botaoApagar.onclick = apagarTarefa;
-                botaoApagar.id = tarefa.idTarefa;
-
-                divTarefa.appendChild(botaoApagar);
-                listaTarefas.appendChild(divTarefa);
-            })
-        }
-
-        // Seção de Controle
-        function adicionarTarefa(){
-            const tituloTarefa = document.getElementById('tituloTarefa').value;
-            const dataConclusao = document.getElementById('dataConclusao').value;
-
-            tarefas.push(
-                {
-                    tituloTarefa: tituloTarefa, 
-                    dataConclusao: dataConclusao,
-                    idTarefa: Date.now()
-                }
-            );
-
-            salvarTarefas();
-            renderizarTarefas();
-        }
-        function apagarTarefa(evento) {
-            const botaoClicado = evento.target;
-            const idTarefa = botaoClicado.id;
-            tarefas = tarefas.filter(function(tarefa){
-                if (tarefa.idTarefa == idTarefa){
-                    return false;
-                } else{
-                    return true;
-                }
-            });
-
-            salvarTarefas();
-            renderizarTarefas();
-        }
-
-        renderizarTarefas();
-
-    
-    </script> -->
 </body>
 </html>

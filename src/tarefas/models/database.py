@@ -17,6 +17,7 @@ class Database:
         self.username = getenv('DB_USER')
         self.password = getenv('DB_PASSWORD')
         self.database = getenv('DB_SCHEMA')
+        self.port = getenv('DB_PORT') or 3306
         self.connection = None
         self.cursor = None
 
@@ -27,7 +28,8 @@ class Database:
                 host = self.host,
                 database =self.database,
                 user = self.username,
-                password = self.password
+                password = self.password,
+                port = self.port
             )
             if self.connection.is_connected():
                 self.cursor = self.connection.cursor(dictionary=True)
@@ -66,12 +68,12 @@ class Database:
             print(f'Erro de execução:{e}')
             return 
 
-    # Método de entrada no contexto(para uso com `with`)
+    
     def __enter__(self):
         self.conectar()
         return self
 
-    #Método de saída de contexto(para uso com `with`)
+    
     def __exit__(self, exc_type, ec_val, exc_tb):
         self.desconectar()
 
@@ -106,7 +108,7 @@ def init_db(sql_filepath=SQL_PATH):
         conexao.commit()
 
         print('Schema e tabelas inicializadas com sucesso!')
-        cursor.close()
+        cursor.close() 
         conexao.close() 
 
     except Error as e:
@@ -117,8 +119,6 @@ def init_db(sql_filepath=SQL_PATH):
 """Área 51
 Tudo o que for escrito dessa área será lido e executado como string."""
 
-#db = Database()
-#db.conectar()
-#db.desconectar()
+
         
 
